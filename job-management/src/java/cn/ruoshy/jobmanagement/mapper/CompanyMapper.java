@@ -8,5 +8,11 @@ import java.util.List;
 @Mapper
 public interface CompanyMapper {
 
-    List<Company> queryAll();
+    Company findById(Integer id);
+
+    List<Company> findByName(String name);
+
+    Integer insert(Company company);
+
+    Integer update(Company company);
 }

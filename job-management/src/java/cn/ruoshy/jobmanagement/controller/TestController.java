@@ -17,10 +17,7 @@ public class TestController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test() {
-        List<Company> companies = companyMapper.queryAll();
-        for (Company company : companies) {
-            System.out.println(company.getName());
-        }
+
         return "";
     }
 }

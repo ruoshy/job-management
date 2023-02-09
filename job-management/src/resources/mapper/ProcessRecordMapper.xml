@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ruoshy.jobmanagement.mapper.ProcessRecordMapper">
+
+    <select id="findByScheduleId" resultType="cn.ruoshy.jobmanagement.entity.ProcessRecord">
+        select * from process_record where schedule_id=#{scheduleId}
+    </select>
+
+    <insert id="insert"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            keyColumn="id"
+            parameterType="cn.ruoshy.jobmanagement.entity.ProcessRecord">
+        insert into process_record(schedule_id) values(#{scheduleId})
+    </insert>
+
+    <update id="update">
+        update process_record
+        <set>
+            <if test="record!=null">record=#{record},</if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>

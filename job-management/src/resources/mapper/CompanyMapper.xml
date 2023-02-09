@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ruoshy.jobmanagement.mapper.CompanyMapper">
+    <select id="findById" resultType="cn.ruoshy.jobmanagement.entity.Company">
+        select * from company where id=#{id}
+    </select>
+
+    <select id="findByName" resultType="cn.ruoshy.jobmanagement.entity.Company">
+        select * from company where name like concat('%',#{name},'%')
+    </select>
+
+    <insert id="insert"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            keyColumn="id"
+            parameterType="cn.ruoshy.jobmanagement.entity.Company">
+        insert into company(`name`,establish_date,registered_capital,address)
+        values(#{name},#{establish_date},#{registered_capital},#{address})
+    </insert>
+
+    <update id="update" keyProperty="cn.ruoshy.jobmanagement.entity.Company">
+        update company
+        <set>
+            <if test="name!=null">name=#{name},</if>
+            <if test="establishDate!=null">establish_date=#{establishDate},</if>
+            <if test="registeredCapital!=null">registered_capital=#{registeredCapital},</if>
+            <if test="address!=null">address=#{address},</if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>

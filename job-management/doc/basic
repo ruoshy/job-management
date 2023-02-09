@@ -1,0 +1,41 @@
+-- 用户实体
+create table `user`(
+	id int primary key auto_increment,
+	`name` varchar(20) not null,
+	phone varchar(11) not null,
+	`password` text not null,
+	address text not null,
+	email text not null
+);
+-- 公司实体
+create table company(
+	id int primary key auto_increment,
+	`name` varchar(20) not null,
+	establish_date timestamp not null,
+	registered_capital double not null,
+	address varchar(50) not null
+);
+-- 日程安排
+create table `schedule`(
+	id int primary key auto_increment,
+	user_id int,
+	company_id int,
+	date timestamp not null,
+	state tinyint(1) default 0,
+	constraint fk_schedule_user1 foreign key(user_id) references `user`(id),
+	constraint fk_schedule_company1 foreign key(company_id) references company(id)
+);
+-- 过程记录
+create table process_record(
+	id int primary key auto_increment,
+	schedule_id int,
+	record text,
+	constraint fk_process_record_schedule1 foreign key(schedule_id) references `schedule`(id)
+);
+
+drop table process_record;
+drop table `schedule`;
+drop table  `user`;
+drop table company;
+
+update process_record where id=#{id}

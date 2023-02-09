@@ -1,0 +1,11 @@
+insert into `user`(`name`,phone,`password`,address,email)
+VALUES('ruoshyc','13819773757','asd456','浙江省温州市乐清市','ruoshyc@163.com');
+
+insert into company(`name`,establish_date,registered_capital,address)
+values('xxxxxx公司','2023-02-01',1000000,'浙江省温州市鹿城区');
+
+insert into `schedule`(user_id,company_id,date,state)
+values(1,1,'2023-02-05',1);
+
+insert into process_record(schedule_id,record)
+values(1,'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')

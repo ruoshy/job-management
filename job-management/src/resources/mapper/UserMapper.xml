@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ruoshy.jobmanagement.mapper.UserMapper">
+    <select id="findById"
+            parameterType="java.lang.Integer"
+            resultType="cn.ruoshy.jobmanagement.entity.User">
+        select * from `user` where id=#{id}
+    </select>
+    <select id="find"
+            parameterType="java.lang.String"
+            resultType="cn.ruoshy.jobmanagement.entity.User">
+        select * from `user` where phone=#{phone}
+    </select>
+
+    <insert id="insert"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            keyColumn="id"
+            parameterType="cn.ruoshy.jobmanagement.entity.User">
+        insert into `user`(name,phone,`password`,address,email)
+        values(#{name},#{phone},#{password},#{address},#{email})
+    </insert>
+    
+    <update id="update" parameterType="cn.ruoshy.jobmanagement.entity.User">
+        update `user`
+        <set>
+            <if test="name!=null">name=#{name},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="address!=null">address=#{address},</if>
+            <if test="email!=null">email=#{email},</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from user where id=#{id}
+    </delete>
+</mapper>
